@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dialog_Builder_2
 {
-    class Page
+    public class Page
     {
         private string pageName = "";
         private string pageText = "";

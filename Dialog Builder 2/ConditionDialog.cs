@@ -9,10 +9,16 @@ namespace Dialog_Builder_2
 {
     class ConditionDialog : Form
     {
+        private Label lbCondition = new Label();
+        private Label lbName = new Label();
+        private Label lbSign = new Label();
+        private Label lbValue = new Label();
+
         private ComboBox cbCondition = new ComboBox();
         private TextBox tbName = new TextBox();
         private ComboBox cbSign = new ComboBox();
         private TextBox tbValue = new TextBox();
+
         private Button btOk = new Button();
         private Button btCancel = new Button();
 
@@ -22,11 +28,13 @@ namespace Dialog_Builder_2
         {
             this.Size = new System.Drawing.Size(550, 300);
             this.StartPosition = FormStartPosition.CenterParent;
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
             this.BackColor = System.Drawing.Color.FromArgb(64, 64, 64);
 
             cbCondition = new ComboBox
             {
+                FlatStyle = FlatStyle.Popup,
+                BackColor = this.BackColor,
                 Width = 100,
                 Top = 100,
                 Left = 30,
@@ -35,11 +43,12 @@ namespace Dialog_Builder_2
             };
             cbCondition.Items.Add("Local variable");
             cbCondition.Items.Add("Global variable");
-            cbCondition.Items.Add("[Advanced inventory system] Inventory item");
+            cbCondition.Items.Add("Inventory item [Advanced inventory system]");
             cbCondition.SelectedIndex = 0;
 
             tbName = new TextBox
             {
+                BackColor = this.BackColor,
                 Width = 100,
                 Top = 100,
                 Left = 160,
@@ -48,6 +57,8 @@ namespace Dialog_Builder_2
 
             cbSign = new ComboBox
             {
+                FlatStyle = FlatStyle.Popup,
+                BackColor = this.BackColor,
                 Width = 100,
                 Top = 100,
                 Left = 290,
@@ -64,6 +75,7 @@ namespace Dialog_Builder_2
 
             tbValue = new TextBox
             {
+                BackColor = this.BackColor,
                 Width = 100,
                 Top = 100,
                 Left = 420,
@@ -72,6 +84,7 @@ namespace Dialog_Builder_2
 
             btCancel = new Button
             {
+                FlatStyle = FlatStyle.Popup,
                 AutoSize = true,
                 Text = "Cancel",
                 Cursor = Cursors.Hand,
@@ -83,6 +96,7 @@ namespace Dialog_Builder_2
 
             btOk = new Button
             {
+                FlatStyle = FlatStyle.Popup,
                 AutoSize = true,
                 Text = "Ok",
                 Cursor = Cursors.Hand,
@@ -110,12 +124,61 @@ namespace Dialog_Builder_2
                 condition += ":";
                 condition += tbName.Text;
                 condition += cbSign.Text;
-                condition += tbValue;
+                condition += tbValue.Text;
 
                 Condition = condition;
 
                 this.DialogResult = DialogResult.OK;
 
+            };
+
+            lbCondition = new Label
+            {
+                AutoSize = true,
+                Text = "Condition type",
+                Top = 75,
+                Parent = this
+            };
+            lbCondition.Left = cbCondition.Left + cbCondition.Width / 2 - lbCondition.Width / 2;
+
+            lbName = new Label
+            {
+                AutoSize = true,
+                Text = "Name",
+                Top = 75,
+                Parent = this
+            };
+            lbName.Left = tbName.Left + tbName.Width / 2 - lbName.Width / 2;
+
+            lbSign = new Label
+            {
+                AutoSize = true,
+                Text = "Sign",
+                Top = 75,
+                Parent = this
+            };
+            lbSign.Left = cbSign.Left + cbSign.Width / 2 - lbSign.Width / 2;
+
+            lbValue = new Label
+            {
+                AutoSize = true,
+                Text = "Value",
+                Top = 75,
+                Parent = this
+            };
+            lbValue.Left = tbValue.Left + tbValue.Width / 2 - lbValue.Width / 2;
+
+            this.Load += (s, e) =>
+            {
+                cbCondition.ForeColor = this.ForeColor;
+                tbName.ForeColor = this.ForeColor;
+                cbSign.ForeColor = this.ForeColor;
+                tbValue.ForeColor = this.ForeColor;
+
+                lbCondition.ForeColor = this.ForeColor;
+                lbName.ForeColor = this.ForeColor;
+                lbSign.ForeColor = this.ForeColor;
+                lbValue.ForeColor = this.ForeColor;
             };
         }
     }

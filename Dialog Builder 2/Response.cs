@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dialog_Builder_2
 {
-    class Response
+    public class Response
     {
         private string responsesText = "";
         private string responsesCondition = "";

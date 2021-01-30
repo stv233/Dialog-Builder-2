@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dialog_Builder_2
 {
-    class Dialog
+    public class Dialog
     {
         private string localVariable = "";
 
@@ -39,5 +39,16 @@ namespace Dialog_Builder_2
             }
         }
 
+        public List<Page> Pages
+        {
+            get
+            {
+                return pages;
+            }
+            set
+            {
+                pages = value;
+            }
+        }
     }
 }
