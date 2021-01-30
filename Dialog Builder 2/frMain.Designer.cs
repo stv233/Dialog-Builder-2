@@ -153,6 +153,7 @@ namespace Dialog_Builder_2
             this.Controls.Add(this.msMain);
             this.ForeColor = System.Drawing.Color.MediumSpringGreen;
             this.MainMenuStrip = this.msMain;
+            this.MinimumSize = new System.Drawing.Size(905, 489);
             this.Name = "frMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dialog Builder 2";

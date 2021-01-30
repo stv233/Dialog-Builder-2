@@ -57,6 +57,11 @@ namespace Dialog_Builder_2
                 secondaryColor = value;
                 rtbPageText.BackColor = value;
                 pnPageResponses.BackColor = value;
+                msMain.BackColor = value;
+                foreach (Control control in msMain.Items)
+                {
+                    control.ForeColor = value;
+                }
                 LoadInfo();
             }
         }
@@ -77,9 +82,16 @@ namespace Dialog_Builder_2
                 btRemovePage.ForeColor = value;
                 pnPageResponses.ForeColor = value;
                 btAddResponse.ForeColor = value;
+                foreach (Control control in msMain.Items)
+                {
+                    control.BackColor = value;
+                }
                 LoadInfo();
             }
         }
+
+        private Label lbText = new Label();
+        private Label lbResponses = new Label();
 
         private TextBox tbName = new TextBox();
         private RichTextBox rtbPageText = new RichTextBox();
@@ -122,6 +134,15 @@ namespace Dialog_Builder_2
             {
                 Dialog.Pages[cbPages.SelectedIndex].Text = rtbPageText.Text;
             };
+
+            lbText = new Label
+            {
+                AutoSize = true,
+                Text = "Text",
+                Left = rtbPageText.Left,
+                Parent = this
+            };
+            lbText.Top = rtbPageText.Top - lbText.Height;
 
             cbPages = new ComboBox
             {
@@ -190,6 +211,15 @@ namespace Dialog_Builder_2
             };
             pnPageResponses.Left = this.Width - pnPageResponses.Width - (this.Width - msMain.Width) / 3 / 4;
 
+            lbResponses = new Label
+            {
+                AutoSize = true,
+                Text = "Player responses",
+                Left = pnPageResponses.Left,
+                Parent = this
+            };
+            lbResponses.Top = pnPageResponses.Top - lbResponses.Height;
+
             btAddResponse = new Button
             {
                 Text = "Add",
@@ -213,6 +243,32 @@ namespace Dialog_Builder_2
                 }
             };
 
+            this.Resize += (s, e) =>
+            {
+                tbName.Left = msMain.Width + (this.Width - msMain.Width) / 3 / 4;
+                tbName.Top = 5;
+                rtbPageText.Width = (int)((this.Width - msMain.Width) / 3 * 1.5);
+                rtbPageText.Height = this.Height / 3 * 2;
+                rtbPageText.Left = tbName.Left;
+                rtbPageText.Top = this.Height / 3 / 2;
+                lbText.Left = rtbPageText.Left;
+                lbText.Top = rtbPageText.Top - lbText.Height;
+                cbPages.Top = tbName.Top;
+                cbPages.Left = tbName.Left + tbName.Width + 5;
+                btAddPage.Top = tbName.Top;
+                btAddPage.Left = cbPages.Left + cbPages.Width + 5;
+                btRemovePage.Top = tbName.Top;
+                btRemovePage.Left = btAddPage.Left + btAddPage.Width + 5;
+                pnPageResponses.Width = this.Width / 4;
+                pnPageResponses.Height = rtbPageText.Height - btAddResponse.Height - 6;
+                pnPageResponses.Top = rtbPageText.Top;
+                pnPageResponses.Left = this.Width - pnPageResponses.Width - (this.Width - msMain.Width) / 3 / 4;
+                lbResponses.Left = pnPageResponses.Left;
+                lbResponses.Top = pnPageResponses.Top - lbResponses.Height;
+                btAddResponse.Width = pnPageResponses.Width;
+                btAddResponse.Top = pnPageResponses.Top + pnPageResponses.Height + 6;
+                btAddResponse.Left = pnPageResponses.Left;
+            };
             Dialog.Pages.Add(new Page("1"));
             cbPages.Items.Add("1");
             cbPages.SelectedIndex = 0;
