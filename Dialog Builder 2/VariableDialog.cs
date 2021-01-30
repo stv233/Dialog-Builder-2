@@ -28,12 +28,14 @@ namespace Dialog_Builder_2
             this.Size = new System.Drawing.Size(420, 300);
             this.StartPosition = FormStartPosition.CenterParent;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.BackColor = System.Drawing.Color.FromArgb(64, 64, 64);
 
             cbType = new ComboBox
             {
                 Left = 30,
                 Top = 100,
                 Width = 100,
+                DropDownStyle = ComboBoxStyle.DropDownList,
                 Parent = this
             };
             cbType.Items.Add("String");

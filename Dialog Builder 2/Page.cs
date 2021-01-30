@@ -11,7 +11,7 @@ namespace Dialog_Builder_2
         private string pageName = "";
         private string pageText = "";
         private string pageActions = "";
-        private List<Responses> pageResponses = new List<Responses>();
+        private List<Response> pageResponses = new List<Response>();
 
         public string Name
         {
@@ -49,7 +49,7 @@ namespace Dialog_Builder_2
             }
         }
 
-        public List<Responses> Responses
+        public List<Response> Responses
         {
             get
             {
