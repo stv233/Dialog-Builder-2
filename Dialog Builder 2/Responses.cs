@@ -10,6 +10,7 @@ namespace Dialog_Builder_2
     {
         private string responsesText = "";
         private string responsesCondition = "";
+        private string responsesLink = "0";
 
         public string Text
         {
@@ -32,6 +33,18 @@ namespace Dialog_Builder_2
             set
             {
                 responsesCondition = value;
+            }
+        }
+
+        public string Link
+        {
+            get
+            {
+                return responsesLink;
+            }
+            set
+            {
+                responsesLink = value;
             }
         }
 
