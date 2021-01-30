@@ -34,5 +34,12 @@ namespace Dialog_Builder_2
                 responsesCondition = value;
             }
         }
+
+        public Responses() { }
+
+        public Responses(string text)
+        {
+            Text = text;
+        }
     }
 }
