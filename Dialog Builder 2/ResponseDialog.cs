@@ -61,6 +61,17 @@ namespace Dialog_Builder_2
                 Left = 390,
                 Parent = this
             };
+            btAdd.Click += (s, e) =>
+            {
+                using (ConditionDialog conditionDialog = new ConditionDialog())
+                {
+
+                    if (conditionDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        tbCondition.Text = conditionDialog.Condition;
+                    }
+                }
+            };
 
             btCancel = new Button
             {
