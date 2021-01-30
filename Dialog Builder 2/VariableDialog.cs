@@ -9,16 +9,15 @@ namespace Dialog_Builder_2
 {
     class VariableDialog : Form
     {
+        private Label lbType = new Label();
+        private Label lbName = new Label();
+        private Label lbValue = new Label();
+
         private ComboBox cbType;
-
         private TextBox tbName;
-
         private TextBox tbValue;
-
         private NumericUpDown nudValue;
-
         private Button btOk;
-
         private Button btCancel;
 
         public string Variable { get; private set; }
@@ -28,10 +27,12 @@ namespace Dialog_Builder_2
             this.Size = new System.Drawing.Size(420, 300);
             this.StartPosition = FormStartPosition.CenterParent;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
-            this.BackColor = System.Drawing.Color.FromArgb(64, 64, 64);
+            this.BackColor = frMain.ActiveForm.BackColor;
 
             cbType = new ComboBox
             {
+                BackColor = this.BackColor,
+                FlatStyle = FlatStyle.Popup,
                 Left = 30,
                 Top = 100,
                 Width = 100,
@@ -75,6 +76,7 @@ namespace Dialog_Builder_2
 
             tbName = new TextBox
             {
+                BackColor = this.BackColor,
                 Left = 160,
                 Top = 100,
                 Width = 100,
@@ -83,6 +85,7 @@ namespace Dialog_Builder_2
 
             tbValue = new TextBox
             {
+                BackColor = this.BackColor,
                 Left = 290,
                 Top = 100,
                 Width = 100,
@@ -91,45 +94,64 @@ namespace Dialog_Builder_2
 
             nudValue = new NumericUpDown
             {
+                BackColor = this.BackColor,
                 Left = 290,
                 Top = 100,
                 Width = 100,
                 DecimalPlaces = 2,
+                Maximum = 99999999999,
+                Minimum = -99999999999,
                 Visible = false,
                 Parent = this
             };
 
             btCancel = new Button
             {
+                FlatStyle = FlatStyle.Popup,
                 AutoSize = true,
                 Text = "Cancel",
                 Cursor = Cursors.Hand,
                 Top = 200,
-                Left = this.Width / 2 + 20,
+                Left = tbName.Left + tbName.Width,
                 DialogResult = DialogResult.Cancel,
                 Parent = this
             };
 
             btOk = new Button
             {
+                FlatStyle = FlatStyle.Popup,
                 AutoSize = true,
                 Text = "Ok",
                 Cursor = Cursors.Hand,
                 Top = 200,
                 Parent = this
             };
-            btOk.Left = this.Width / 2 - btOk.Width - 20;
+            btOk.Left = tbName.Left - btOk.Width;
             btOk.Click += (s, e) =>
             {
                 if (tbName.Text == "")
                 {
-                    MessageBox.Show("Variable name cannot be empty", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Variable name cannot be empty.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if ((tbName.Text.Contains("[") 
+                    || tbName.Text.Contains("]")
+                    || tbName.Text.Contains(" ") 
+                    || tbName.Text.Contains("!") 
+                    || tbName.Text.Contains("+") 
+                    || tbName.Text.Contains("-") 
+                    || tbName.Text.Contains("=") 
+                    || tbName.Text.Contains(">") 
+                    || tbName.Text.Contains("<")))
+                {
+                    MessageBox.Show("Variable name contains invalid characters.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 if (cbType.SelectedIndex == 0)
                 {
-                    Variable = cbType.Text.ToLower() + ":" + tbName.Text + "=" + tbValue;
+                    Variable = cbType.Text.ToLower() + ":" + tbName.Text + "=" + tbValue.Text;
                 }
                 else
                 {
@@ -140,6 +162,42 @@ namespace Dialog_Builder_2
 
             };
 
+            lbType = new Label
+            {
+                AutoSize = true,
+                Text = "Variable type",
+                Top = 75,
+                Parent = this
+            };
+            lbType.Left = cbType.Left + cbType.Width / 2 - lbType.Width / 2;
+
+            lbName = new Label
+            {
+                AutoSize = true,
+                Text = "Name",
+                Top = 75,
+                Parent = this
+            };
+            lbName.Left = tbName.Left + tbName.Width / 2 - lbName.Width / 2;
+
+            lbValue = new Label
+            {
+                AutoSize = true,
+                Text = "Value",
+                Top = 75,
+                Parent = this
+            };
+            lbValue.Left = tbValue.Left + tbValue.Width / 2 - lbValue.Width / 2;
+
+            this.Load += (s, e) =>
+            {
+                cbType.ForeColor = this.ForeColor;
+                tbName.ForeColor = this.ForeColor;
+                tbValue.ForeColor = this.ForeColor;
+                nudValue.ForeColor = this.ForeColor;
+            };
+
         }
+
     }
 }

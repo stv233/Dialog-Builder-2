@@ -107,7 +107,6 @@ namespace Dialog_Builder_2
 
             tbName = new TextBox
             {
-                ReadOnly = true,
                 BackColor = this.BackColor,
                 ForeColor = this.ForeColor,
                 Left = msMain.Width + (this.Width - msMain.Width) / 3 / 4,
@@ -157,8 +156,14 @@ namespace Dialog_Builder_2
             cbPages.SelectedIndexChanged += (s, e) =>
             {
                 LoadInfo();
-                tbName.ReadOnly = ((cbPages.SelectedIndex == 0));
-                btRemovePage.Enabled = (!(cbPages.SelectedIndex == 0));
+                if (new Properties.Settings().SafeMode)
+                {
+                    tbName.ReadOnly = ((cbPages.SelectedIndex == 0));
+                }
+                if (new Properties.Settings().SafeMode)
+                {
+                    btRemovePage.Enabled = (!(cbPages.SelectedIndex == 0));
+                }
             };
 
             btAddPage = new Button
@@ -360,6 +365,59 @@ namespace Dialog_Builder_2
             {
                 control.Width = maxWidth;
             }
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void localVariablesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (VariablesWindow variablesWindow = new VariablesWindow(Dialog.LocalVariable) { ControlsColor = SecondaryColor, ForeColor = this.ForeColor})
+            {
+                variablesWindow.ShowDialog();
+                Dialog.LocalVariable = variablesWindow.VariablesText;
+            }
+        }
+
+        private void globalVariablesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (VariablesWindow variablesWindow = new VariablesWindow(Dialog.GlobalVariable) { ControlsColor = SecondaryColor, ForeColor = this.ForeColor })
+            {
+                variablesWindow.ShowDialog();
+                Dialog.GlobalVariable = variablesWindow.VariablesText;
+            }
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

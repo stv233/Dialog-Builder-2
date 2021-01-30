@@ -29,7 +29,7 @@ namespace Dialog_Builder_2
             this.Size = new System.Drawing.Size(550, 300);
             this.StartPosition = FormStartPosition.CenterParent;
             this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            this.BackColor = System.Drawing.Color.FromArgb(64, 64, 64);
+            this.BackColor = frMain.ActiveForm.BackColor;
 
             cbCondition = new ComboBox
             {

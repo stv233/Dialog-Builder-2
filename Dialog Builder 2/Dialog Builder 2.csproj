@@ -63,7 +63,13 @@
     <Compile Include="ResponseDialog.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="StringDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="VariableDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VariablesWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <EmbeddedResource Include="frMain.resx">

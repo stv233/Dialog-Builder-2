@@ -71,22 +71,25 @@ namespace Dialog_Builder_2
             // 
             this.newToolStripMenuItem.ForeColor = System.Drawing.Color.MediumSpringGreen;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(184, 34);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(181, 34);
             this.newToolStripMenuItem.Text = "New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.ForeColor = System.Drawing.Color.MediumSpringGreen;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(184, 34);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(181, 34);
             this.openToolStripMenuItem.Text = "Open...";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.ForeColor = System.Drawing.Color.MediumSpringGreen;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(184, 34);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(181, 34);
             this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
@@ -94,13 +97,15 @@ namespace Dialog_Builder_2
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
             this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(181, 34);
             this.saveAsToolStripMenuItem.Text = "Save as...";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.ForeColor = System.Drawing.Color.MediumSpringGreen;
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(184, 34);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(181, 34);
             this.exportToolStripMenuItem.Text = "Export...";
+            this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -113,8 +118,9 @@ namespace Dialog_Builder_2
             // 
             this.localVariablesToolStripMenuItem.ForeColor = System.Drawing.Color.MediumSpringGreen;
             this.localVariablesToolStripMenuItem.Name = "localVariablesToolStripMenuItem";
-            this.localVariablesToolStripMenuItem.Size = new System.Drawing.Size(184, 34);
+            this.localVariablesToolStripMenuItem.Size = new System.Drawing.Size(181, 34);
             this.localVariablesToolStripMenuItem.Text = "Local variables";
+            this.localVariablesToolStripMenuItem.Click += new System.EventHandler(this.localVariablesToolStripMenuItem_Click);
             // 
             // globalVariablesToolStripMenuItem
             // 
@@ -122,6 +128,7 @@ namespace Dialog_Builder_2
             this.globalVariablesToolStripMenuItem.Name = "globalVariablesToolStripMenuItem";
             this.globalVariablesToolStripMenuItem.Size = new System.Drawing.Size(181, 34);
             this.globalVariablesToolStripMenuItem.Text = "Global variables";
+            this.globalVariablesToolStripMenuItem.Click += new System.EventHandler(this.globalVariablesToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -134,15 +141,17 @@ namespace Dialog_Builder_2
             // 
             this.settingsToolStripMenuItem.ForeColor = System.Drawing.Color.MediumSpringGreen;
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(184, 34);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(181, 34);
             this.settingsToolStripMenuItem.Text = "Settings";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.ForeColor = System.Drawing.Color.MediumSpringGreen;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(184, 34);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 34);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // frMain
             // 
