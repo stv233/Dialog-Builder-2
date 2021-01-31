@@ -497,7 +497,7 @@ namespace Dialog_Builder_2
                     var gVariable = new ToolStripMenuItem(variable.Split(':')[1].Split('=')[0]);
                     gVariable.BackColor = MainColor;
                     gVariable.ForeColor = textColor;
-                    gVariable.Image = Properties.Resources.local;
+                    gVariable.Image = Properties.Resources.global;
                     gVariable.ImageTransparentColor = Color.FromArgb(64, 64, 64);
                     gVariable.Click += (s, e) =>
                     {
