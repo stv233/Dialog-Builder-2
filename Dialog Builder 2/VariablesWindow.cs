@@ -38,6 +38,7 @@ namespace Dialog_Builder_2
 
             pnVariables = new Panel
             {
+                AutoScroll = true,
                 Left = 5,
                 Top = 5,
                 Width = this.ClientSize.Width - 10,

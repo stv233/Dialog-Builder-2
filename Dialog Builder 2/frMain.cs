@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft;
 
 namespace Dialog_Builder_2
 {
     public partial class frMain : Form
     {
+        private string path = "";
         private Dialog dialog = new Dialog();
         private Color mainСolor = Color.FromArgb(64, 64, 64);
         private Color secondaryColor = Color.FromArgb(55, 55, 55);
@@ -26,7 +28,7 @@ namespace Dialog_Builder_2
             set
             {
                 dialog = value;
-                LoadInfo();
+                //LoadInfo();
             }
         }
 
@@ -100,6 +102,7 @@ namespace Dialog_Builder_2
         private Button btRemovePage = new Button();
         private Panel pnPageResponses = new Panel();
         private Button btAddResponse = new Button();
+        private Button btActions = new Button();
 
         public frMain()
         {
@@ -248,6 +251,24 @@ namespace Dialog_Builder_2
                 }
             };
 
+            btActions = new Button
+            {
+                Text = "Actions",
+                FlatStyle = FlatStyle.Popup,
+                Cursor = Cursors.Hand,
+                Parent = this
+            };
+            btActions.Left = rtbPageText.Left + rtbPageText.Width - btActions.Width;
+            btActions.Top = rtbPageText.Top - btActions.Height - 3;
+            btActions.Click += (s, e) =>
+            {
+                using (ActionWindow actionWindow = new ActionWindow(Dialog.Pages[cbPages.SelectedIndex].Actions) { ForeColor = this.ForeColor, ControlsColor =  SecondaryColor})
+                {
+                    actionWindow.ShowDialog();
+                    Dialog.Pages[cbPages.SelectedIndex].Actions = actionWindow.ActionsText;
+                }
+            };
+
             this.Resize += (s, e) =>
             {
                 tbName.Left = msMain.Width + (this.Width - msMain.Width) / 3 / 4;
@@ -273,6 +294,8 @@ namespace Dialog_Builder_2
                 btAddResponse.Width = pnPageResponses.Width;
                 btAddResponse.Top = pnPageResponses.Top + pnPageResponses.Height + 6;
                 btAddResponse.Left = pnPageResponses.Left;
+                btActions.Left = rtbPageText.Left + rtbPageText.Width - btActions.Width;
+                btActions.Top = rtbPageText.Top - btActions.Height - 3;
             };
             Dialog.Pages.Add(new Page("1"));
             cbPages.Items.Add("1");
@@ -369,22 +392,59 @@ namespace Dialog_Builder_2
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (MessageBox.Show("Are you sure you want to create a new dialogue?", "New",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                Dialog = new Dialog();
+                Dialog.Pages.Add(new Page("1"));
+                cbPages.Items.Clear();
+                cbPages.Items.Add("1");
+                cbPages.SelectedIndex = 0;
+            }
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            using (var ofd = new OpenFileDialog() { FileName = path, Filter = "Dialog builder file (*.dbf)|*.dbf|All files (*.*)|*.*" })
+            {
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    Dialog = Newtonsoft.Json.JsonConvert.DeserializeObject<Dialog>(System.IO.File.ReadAllText(ofd.FileName));
+                    cbPages.Items.Clear();
 
+                    foreach(Page page in Dialog.Pages)
+                    {
+                        cbPages.Items.Add(page.Name);
+                    }
+
+                    cbPages.SelectedIndex = 0;
+                    path = ofd.FileName;
+                }
+            }
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (string.IsNullOrEmpty(path))
+            {
+                saveAsToolStripMenuItem.PerformClick();
+            }
+            else
+            {
+                System.IO.File.WriteAllText(path, Newtonsoft.Json.JsonConvert.SerializeObject(Dialog));
+            }
         }
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            using (var sfd = new SaveFileDialog() { FileName = path, Filter = "Dialog builder file (*.dbf)|*.dbf|All files (*.*)|*.*" })
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    System.IO.File.WriteAllText(sfd.FileName, Newtonsoft.Json.JsonConvert.SerializeObject(Dialog));
+                    path = sfd.FileName;
+                }
+            }
         }
 
         private void exportToolStripMenuItem_Click(object sender, EventArgs e)
