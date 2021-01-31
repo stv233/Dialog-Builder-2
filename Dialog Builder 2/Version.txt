@@ -1,1 +1,1 @@
-﻿0.7.0|https://github.com/stv233/ItemCreator/blob/master/ItemCreatorSetup/ItemCreatorSetup-SetupFiles/ItemCreatorSetup.msi?raw=true
+﻿0.0.1|https://github.com/stv233/Dialog-Builder-2/tree/master/DialogBuilderInstaller/DialogBuilderInstaller-SetupFiles?raw=true

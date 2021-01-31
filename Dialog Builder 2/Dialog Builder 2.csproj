@@ -129,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ico.ico" />
+    <Content Include="Version.txt" />
     <None Include="Resources\Loading.jpg" />
     <None Include="Resources\local.png" />
     <None Include="Resources\global.png" />

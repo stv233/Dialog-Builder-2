@@ -22,7 +22,7 @@ namespace Dialog_Builder_2
             try
             {
                 version = new Version(new Properties.Settings().Version);
-                fileLink = "https://github.com/stv233/ItemCreator/blob/master/ItemCreator/Version.txt?raw=true";
+                fileLink = "https://github.com/stv233/Dialog-Builder-2/blob/master/Dialog%20Builder%202/Version.txt?raw=true";
             }
             catch
             {

@@ -2,8 +2,8 @@
 <DOCUMENT Type="Advanced Installer" CreateVersion="17.7" version="17.7" Modules="simple" RootPath="." Language="en" Id="{4BC019BE-E4C5-4AC7-9D0D-E1817E0DDD83}">
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_DialogBuilder2.exe" Value="..\Dialog Builder 2\bin\Debug"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_DialogBuilder2.exe.config" Value="..\Dialog Builder 2\bin\Debug"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_DialogBuilder2.exe" Value="..\Dialog Builder 2\bin\Release"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_DialogBuilder2.exe.config" Value="..\Dialog Builder 2\bin\Release"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Newtonsoft.Json.dll" Value="..\Dialog Builder 2"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_DialogBuilder2.exe" Value="Dialog Builder 2.exe"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_DialogBuilder2.exe.config" Value="Dialog Builder 2.exe.config"/>
