@@ -41,6 +41,11 @@ namespace Dialog_Builder_2
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.visualStyleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.safeModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.color1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.color2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -134,11 +139,14 @@ namespace Dialog_Builder_2
             // 
             this.toolStripMenuItem2.ForeColor = System.Drawing.Color.MediumSpringGreen;
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(184, 34);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(181, 34);
             this.toolStripMenuItem2.Text = "---";
             // 
             // settingsToolStripMenuItem
             // 
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.visualStyleToolStripMenuItem,
+            this.safeModeToolStripMenuItem});
             this.settingsToolStripMenuItem.ForeColor = System.Drawing.Color.MediumSpringGreen;
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(181, 34);
@@ -152,6 +160,46 @@ namespace Dialog_Builder_2
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 34);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // visualStyleToolStripMenuItem
+            // 
+            this.visualStyleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.color1ToolStripMenuItem,
+            this.color2ToolStripMenuItem,
+            this.textColorToolStripMenuItem});
+            this.visualStyleToolStripMenuItem.Name = "visualStyleToolStripMenuItem";
+            this.visualStyleToolStripMenuItem.Size = new System.Drawing.Size(203, 34);
+            this.visualStyleToolStripMenuItem.Text = "Visual style";
+            // 
+            // safeModeToolStripMenuItem
+            // 
+            this.safeModeToolStripMenuItem.Checked = true;
+            this.safeModeToolStripMenuItem.CheckOnClick = true;
+            this.safeModeToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.safeModeToolStripMenuItem.Name = "safeModeToolStripMenuItem";
+            this.safeModeToolStripMenuItem.Size = new System.Drawing.Size(203, 34);
+            this.safeModeToolStripMenuItem.Text = "Safe mode";
+            // 
+            // color1ToolStripMenuItem
+            // 
+            this.color1ToolStripMenuItem.Name = "color1ToolStripMenuItem";
+            this.color1ToolStripMenuItem.Size = new System.Drawing.Size(190, 34);
+            this.color1ToolStripMenuItem.Text = "Color # 1";
+            this.color1ToolStripMenuItem.Click += new System.EventHandler(this.color1ToolStripMenuItem_Click);
+            // 
+            // color2ToolStripMenuItem
+            // 
+            this.color2ToolStripMenuItem.Name = "color2ToolStripMenuItem";
+            this.color2ToolStripMenuItem.Size = new System.Drawing.Size(190, 34);
+            this.color2ToolStripMenuItem.Text = "Color # 2";
+            this.color2ToolStripMenuItem.Click += new System.EventHandler(this.color2ToolStripMenuItem_Click);
+            // 
+            // textColorToolStripMenuItem
+            // 
+            this.textColorToolStripMenuItem.Name = "textColorToolStripMenuItem";
+            this.textColorToolStripMenuItem.Size = new System.Drawing.Size(190, 34);
+            this.textColorToolStripMenuItem.Text = "Text color";
+            this.textColorToolStripMenuItem.Click += new System.EventHandler(this.textColorToolStripMenuItem_Click);
             // 
             // frMain
             // 
@@ -167,6 +215,7 @@ namespace Dialog_Builder_2
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dialog Builder 2";
             this.Load += new System.EventHandler(this.frMain_Load);
+            this.SizeChanged += new System.EventHandler(this.frMain_SizeChanged);
             this.msMain.ResumeLayout(false);
             this.msMain.PerformLayout();
             this.ResumeLayout(false);
@@ -188,6 +237,11 @@ namespace Dialog_Builder_2
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem visualStyleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem color1ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem color2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem textColorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem safeModeToolStripMenuItem;
     }
 }
 

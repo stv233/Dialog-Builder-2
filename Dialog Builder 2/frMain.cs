@@ -13,6 +13,16 @@ namespace Dialog_Builder_2
 {
     public partial class frMain : Form
     {
+
+        struct staticSetting
+        {
+            public int Width;
+            public int Height;
+            public Color Main;
+            public Color Secondary;
+            public Color Text;
+        }
+
         private string path = "";
         private Dialog dialog = new Dialog();
         private Color mainСolor = Color.FromArgb(64, 64, 64);
@@ -60,9 +70,19 @@ namespace Dialog_Builder_2
                 rtbPageText.BackColor = value;
                 pnPageResponses.BackColor = value;
                 msMain.BackColor = value;
-                foreach (Control control in msMain.Items)
+                foreach (ToolStripMenuItem item in msMain.Items)
                 {
-                    control.ForeColor = value;
+                    item.BackColor = value;
+
+                    foreach(ToolStripMenuItem subItem in item.DropDownItems)
+                    {
+                        subItem.BackColor = value;
+
+                        foreach (ToolStripMenuItem subSubItem in subItem.DropDownItems)
+                        {
+                            subSubItem.BackColor = value;
+                        }
+                    }
                 }
                 LoadInfo();
             }
@@ -84,9 +104,21 @@ namespace Dialog_Builder_2
                 btRemovePage.ForeColor = value;
                 pnPageResponses.ForeColor = value;
                 btAddResponse.ForeColor = value;
-                foreach (Control control in msMain.Items)
+                lbText.ForeColor = value;
+                lbResponses.ForeColor = value;
+                btActions.ForeColor = value;
+                foreach (ToolStripMenuItem item in msMain.Items)
                 {
-                    control.BackColor = value;
+                    item.ForeColor = value;
+
+                    foreach (ToolStripMenuItem subItem in item.DropDownItems)
+                    {
+                        subItem.ForeColor = value;
+                        foreach (ToolStripMenuItem subSubItem in subItem.DropDownItems)
+                        {
+                            subSubItem.ForeColor = value;
+                        }
+                    }
                 }
                 LoadInfo();
             }
@@ -304,7 +336,42 @@ namespace Dialog_Builder_2
 
         private void frMain_Load(object sender, EventArgs e)
         {
+            if (System.IO.File.Exists("usersett"))
+            {
+                staticSetting setting = Newtonsoft.Json.JsonConvert.DeserializeObject<staticSetting>(System.IO.File.ReadAllText("usersett"));
 
+                MainColor = setting.Main;
+                SecondaryColor = setting.Secondary;
+                TextColor = setting.Text;
+                this.Width = setting.Width;
+                this.Height = setting.Height;
+            }
+            else
+            {
+                MainColor = mainСolor;
+                SecondaryColor = secondaryColor;
+                TextColor = textColor;
+                staticSetting setting = new staticSetting();
+                setting.Main = MainColor;
+                setting.Secondary = SecondaryColor;
+                setting.Text = TextColor;
+                setting.Width = this.Width;
+                setting.Height = this.Height;
+                System.IO.File.WriteAllText("usersett", Newtonsoft.Json.JsonConvert.SerializeObject(setting));
+            }
+
+            safeModeToolStripMenuItem.Checked = new Properties.Settings().SafeMode;
+
+            safeModeToolStripMenuItem.CheckedChanged += safeModeToolStripMenuItem_CheckedChanged;
+
+        }
+
+        private void safeModeToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            var settings = new Properties.Settings();
+            settings.SafeMode = safeModeToolStripMenuItem.Checked;
+            settings.Save();
+            MessageBox.Show("Safe mode status changed. For all changes to take effect, you must restart the program.", "Safe mode", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void LoadInfo()
@@ -521,7 +588,72 @@ namespace Dialog_Builder_2
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Application.Exit();
+        }
 
+        private void color1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (ColorDialog cd = new ColorDialog { Color = MainColor})
+            {
+                if (cd.ShowDialog() == DialogResult.OK)
+                {
+                    MainColor = cd.Color;
+                    staticSetting setting = new staticSetting();
+                    setting.Main = MainColor;
+                    setting.Secondary = SecondaryColor;
+                    setting.Text = TextColor;
+                    setting.Width = this.Width;
+                    setting.Height = this.Height;
+                    System.IO.File.WriteAllText("usersett", Newtonsoft.Json.JsonConvert.SerializeObject(setting));
+                }
+            }
+        }
+
+        private void color2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (ColorDialog cd = new ColorDialog { Color = SecondaryColor })
+            {
+                if (cd.ShowDialog() == DialogResult.OK)
+                {
+                    SecondaryColor = cd.Color;
+                    staticSetting setting = new staticSetting();
+                    setting.Main = MainColor;
+                    setting.Secondary = SecondaryColor;
+                    setting.Text = TextColor;
+                    setting.Width = this.Width;
+                    setting.Height = this.Height;
+                    System.IO.File.WriteAllText("usersett", Newtonsoft.Json.JsonConvert.SerializeObject(setting));
+                }
+            }
+        }
+
+        private void textColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (ColorDialog cd = new ColorDialog { Color = SecondaryColor })
+            {
+                if (cd.ShowDialog() == DialogResult.OK)
+                {
+                    TextColor = cd.Color;
+                    staticSetting setting = new staticSetting();
+                    setting.Main = MainColor;
+                    setting.Secondary = SecondaryColor;
+                    setting.Text = TextColor;
+                    setting.Width = this.Width;
+                    setting.Height = this.Height;
+                    System.IO.File.WriteAllText("usersett", Newtonsoft.Json.JsonConvert.SerializeObject(setting));
+                }
+            }
+        }
+
+        private void frMain_SizeChanged(object sender, EventArgs e)
+        {
+            staticSetting setting = new staticSetting();
+            setting.Main = MainColor;
+            setting.Secondary = SecondaryColor;
+            setting.Text = TextColor;
+            setting.Width = this.Width;
+            setting.Height = this.Height;
+            System.IO.File.WriteAllText("usersett", Newtonsoft.Json.JsonConvert.SerializeObject(setting));
         }
     }
 }
