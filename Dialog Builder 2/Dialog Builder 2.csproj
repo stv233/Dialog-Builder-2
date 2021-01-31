@@ -69,6 +69,9 @@
     <Compile Include="frMain.Designer.cs">
       <DependentUpon>frMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frСheckingForUpdates.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Page.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,6 +82,7 @@
     <Compile Include="StringDialog.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Updater.cs" />
     <Compile Include="VariableDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +91,9 @@
     </Compile>
     <EmbeddedResource Include="frMain.resx">
       <DependentUpon>frMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frСheckingForUpdates.resx">
+      <DependentUpon>frСheckingForUpdates.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -122,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ico.ico" />
+    <None Include="Resources\Loading.jpg" />
     <None Include="Resources\local.png" />
     <None Include="Resources\global.png" />
   </ItemGroup>

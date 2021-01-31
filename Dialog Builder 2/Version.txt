@@ -1,0 +1,1 @@
+﻿0.7.0|https://github.com/stv233/ItemCreator/blob/master/ItemCreatorSetup/ItemCreatorSetup-SetupFiles/ItemCreatorSetup.msi?raw=true

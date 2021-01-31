@@ -16,6 +16,7 @@ namespace Dialog_Builder_2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            new frСheckingForUpdates().ShowDialog();
             Application.Run(new frMain());
         }
     }
