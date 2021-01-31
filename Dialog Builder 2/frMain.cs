@@ -97,6 +97,7 @@ namespace Dialog_Builder_2
             set
             {
                 textColor = value;
+                this.ForeColor = value;
                 tbName.ForeColor = value;
                 rtbPageText.ForeColor = value;
                 cbPages.ForeColor = value;
@@ -455,6 +456,62 @@ namespace Dialog_Builder_2
             {
                 control.Width = maxWidth;
             }
+
+
+            ContextMenuStrip contextMenu = new ContextMenuStrip();
+            contextMenu.BackColor = MainColor;
+            contextMenu.ForeColor = TextColor;
+
+            var localVariable = new ToolStripMenuItem("Insert local variable");
+            localVariable.Image = Properties.Resources.local;
+            localVariable.ImageTransparentColor = Color.FromArgb(64, 64, 64);
+
+            foreach (string variable in Dialog.LocalVariable.Split('\n'))
+            {
+                try
+                {
+                    var lVariable = new ToolStripMenuItem(variable.Split(':')[1].Split('=')[0]);
+                    lVariable.BackColor = MainColor;
+                    lVariable.ForeColor = textColor;
+                    lVariable.Image = Properties.Resources.local;
+                    lVariable.ImageTransparentColor = Color.FromArgb(64,64,64);
+                    lVariable.Click += (s, e) =>
+                    {
+                        rtbPageText.SelectionLength = 0;
+                        rtbPageText.SelectedText = "[variable:" + variable.Split(':')[1].Split('=')[0] + "]";
+                    };
+                    localVariable.DropDownItems.Add(lVariable);
+                }
+                catch(IndexOutOfRangeException) { }
+            }
+            contextMenu.Items.Add(localVariable);
+
+            var globalVariable = new ToolStripMenuItem("Insert global variable");
+            globalVariable.Image = Properties.Resources.global;
+            globalVariable.ImageTransparentColor = Color.FromArgb(64, 64, 64);
+
+            foreach (string variable in Dialog.GlobalVariable.Split('\n'))
+            {
+                try
+                {
+                    var gVariable = new ToolStripMenuItem(variable.Split(':')[1].Split('=')[0]);
+                    gVariable.BackColor = MainColor;
+                    gVariable.ForeColor = textColor;
+                    gVariable.Image = Properties.Resources.local;
+                    gVariable.ImageTransparentColor = Color.FromArgb(64, 64, 64);
+                    gVariable.Click += (s, e) =>
+                    {
+                        rtbPageText.SelectionLength = 0;
+                        rtbPageText.SelectedText = "[gvariable:" + variable.Split(':')[1].Split('=')[0] + "]";
+                    };
+                    localVariable.DropDownItems.Add(gVariable);
+                }
+                catch (IndexOutOfRangeException) { }
+            }
+            contextMenu.Items.Add(globalVariable);
+
+            rtbPageText.ContextMenuStrip = contextMenu;
+
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -569,6 +626,7 @@ namespace Dialog_Builder_2
             {
                 variablesWindow.ShowDialog();
                 Dialog.LocalVariable = variablesWindow.VariablesText;
+                LoadInfo();
             }
         }
 
@@ -578,6 +636,7 @@ namespace Dialog_Builder_2
             {
                 variablesWindow.ShowDialog();
                 Dialog.GlobalVariable = variablesWindow.VariablesText;
+                LoadInfo();
             }
         }
 

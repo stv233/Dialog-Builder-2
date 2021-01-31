@@ -30,6 +30,7 @@ namespace Dialog_Builder_2
             this.StartPosition = FormStartPosition.CenterParent;
             this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
             this.BackColor = frMain.ActiveForm.BackColor;
+            this.Icon = Properties.Resources.ico1;
 
             cbCondition = new ComboBox
             {

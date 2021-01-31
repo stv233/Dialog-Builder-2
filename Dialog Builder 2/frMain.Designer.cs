@@ -29,6 +29,7 @@ namespace Dialog_Builder_2
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frMain));
             this.msMain = new System.Windows.Forms.MenuStrip();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,12 +41,12 @@ namespace Dialog_Builder_2
             this.globalVariablesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualStyleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.safeModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.color1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.color2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.safeModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -153,14 +154,6 @@ namespace Dialog_Builder_2
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.ForeColor = System.Drawing.Color.MediumSpringGreen;
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 34);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
             // visualStyleToolStripMenuItem
             // 
             this.visualStyleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -170,15 +163,6 @@ namespace Dialog_Builder_2
             this.visualStyleToolStripMenuItem.Name = "visualStyleToolStripMenuItem";
             this.visualStyleToolStripMenuItem.Size = new System.Drawing.Size(203, 34);
             this.visualStyleToolStripMenuItem.Text = "Visual style";
-            // 
-            // safeModeToolStripMenuItem
-            // 
-            this.safeModeToolStripMenuItem.Checked = true;
-            this.safeModeToolStripMenuItem.CheckOnClick = true;
-            this.safeModeToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.safeModeToolStripMenuItem.Name = "safeModeToolStripMenuItem";
-            this.safeModeToolStripMenuItem.Size = new System.Drawing.Size(203, 34);
-            this.safeModeToolStripMenuItem.Text = "Safe mode";
             // 
             // color1ToolStripMenuItem
             // 
@@ -201,6 +185,23 @@ namespace Dialog_Builder_2
             this.textColorToolStripMenuItem.Text = "Text color";
             this.textColorToolStripMenuItem.Click += new System.EventHandler(this.textColorToolStripMenuItem_Click);
             // 
+            // safeModeToolStripMenuItem
+            // 
+            this.safeModeToolStripMenuItem.Checked = true;
+            this.safeModeToolStripMenuItem.CheckOnClick = true;
+            this.safeModeToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.safeModeToolStripMenuItem.Name = "safeModeToolStripMenuItem";
+            this.safeModeToolStripMenuItem.Size = new System.Drawing.Size(203, 34);
+            this.safeModeToolStripMenuItem.Text = "Safe mode";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.ForeColor = System.Drawing.Color.MediumSpringGreen;
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 34);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // frMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -209,6 +210,7 @@ namespace Dialog_Builder_2
             this.ClientSize = new System.Drawing.Size(889, 450);
             this.Controls.Add(this.msMain);
             this.ForeColor = System.Drawing.Color.MediumSpringGreen;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.msMain;
             this.MinimumSize = new System.Drawing.Size(905, 489);
             this.Name = "frMain";
