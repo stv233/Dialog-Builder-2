@@ -449,7 +449,51 @@ namespace Dialog_Builder_2
 
         private void exportToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+            {
+                if (fbd.ShowDialog() == DialogResult.OK)
+                {
+                    System.IO.File.WriteAllText(fbd.SelectedPath + "\\variables", Dialog.LocalVariable);
+                    System.IO.File.WriteAllText(fbd.SelectedPath + "\\gvariables", Dialog.LocalVariable);
 
+                    foreach (Page page in Dialog.Pages)
+                    {
+                        System.IO.File.WriteAllText(fbd.SelectedPath + "\\" + page.Name + ".dat", page.Text);
+                        System.IO.File.WriteAllText(fbd.SelectedPath + "\\" + page.Name + "_a.dat", page.Actions);
+
+                        using (System.IO.StreamWriter streamWriter = new System.IO.StreamWriter(fbd.SelectedPath + "\\" + page.Name + "_r.dat"))
+                        {
+                            foreach(Response response in page.Responses)
+                            {
+                                streamWriter.WriteLine(response.Text);
+                            }
+                        }
+
+                        using (System.IO.StreamWriter streamWriter = new System.IO.StreamWriter(fbd.SelectedPath + "\\" + page.Name + "_l.dat"))
+                        {
+                            foreach (Response response in page.Responses)
+                            {
+                                if (response.Link == "Exit")
+                                {
+                                    streamWriter.WriteLine("0");
+                                }
+                                else
+                                {
+                                    streamWriter.WriteLine(response.Link);
+                                }
+                            }
+                        }
+
+                        using (System.IO.StreamWriter streamWriter = new System.IO.StreamWriter(fbd.SelectedPath + "\\" + page.Name + "_c.dat"))
+                        {
+                            foreach (Response response in page.Responses)
+                            {
+                                streamWriter.WriteLine(response.Condition);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void localVariablesToolStripMenuItem_Click(object sender, EventArgs e)
