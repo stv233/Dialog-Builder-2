@@ -12,10 +12,10 @@
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="ARPHELPLINK" Value="https://stv233.pro/en/me/"/>
     <ROW Property="Manufacturer" Value="Stv233.Pro"/>
-    <ROW Property="ProductCode" Value="1033:{D06BA2A9-75CA-4D68-84F4-70E2182DFD98} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{60F31F11-CC9E-4930-BEAA-A92355C3D329} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Dialog builder 2"/>
-    <ROW Property="ProductVersion" Value="0.0.2" Type="32"/>
+    <ROW Property="ProductVersion" Value="0.0.3" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{DE340E7F-23AF-48EB-984E-9D4564F5BC67}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -29,8 +29,10 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
     <ROW Directory="DialogBuilder2_Dir" Directory_Parent="APPDIR" DefaultDir="DIALOG~1|Dialog Builder 2"/>
     <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
+    <ROW Directory="StartMenuFolder" Directory_Parent="TARGETDIR" DefaultDir="STARTM~1|StartMenuFolder" IsPseudoRoot="1"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
@@ -159,7 +161,8 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
     <ROW Shortcut="DialogBuilder2" Directory_="SHORTCUTDIR" Name="DIALOG~1|Dialog Builder 2" Component_="DialogBuilder2_PrimaryOutput" Target="[#DialogBuilder2.exe]" Hotkey="0" IconIndex="0" ShowCmd="1"/>
-    <ROW Shortcut="Dialogbuilder2" Directory_="DialogBuilder2_Dir" Name="DIALOG~1|Dialog builder 2" Component_="DialogBuilder2_PrimaryOutput" Target="[#DialogBuilder2.exe]" Hotkey="0" Icon_="AI_PROPPATH_FILENAME_PERBUILD_DialogBuilder2.exe" IconIndex="0" ShowCmd="1" WkDir="DialogBuilder2_Dir"/>
+    <ROW Shortcut="DialogBuilder2_1" Directory_="StartMenuFolder" Name="DIALOG~1|Dialog Builder 2" Component_="DialogBuilder2_PrimaryOutput" Target="[#DialogBuilder2.exe]" Hotkey="0" Icon_="AI_PROPPATH_FILENAME_PERBUILD_DialogBuilder2.exe" IconIndex="0" ShowCmd="1" WkDir="DialogBuilder2_Dir"/>
+    <ROW Shortcut="Dialogbuilder2" Directory_="DesktopFolder" Name="DIALOG~1|Dialog builder 2" Component_="DialogBuilder2_PrimaryOutput" Target="[#DialogBuilder2.exe]" Hotkey="0" Icon_="AI_PROPPATH_FILENAME_PERBUILD_DialogBuilder2.exe" IconIndex="0" ShowCmd="1" WkDir="DialogBuilder2_Dir"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>
