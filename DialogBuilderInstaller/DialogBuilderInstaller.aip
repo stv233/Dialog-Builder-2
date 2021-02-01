@@ -12,10 +12,10 @@
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="ARPHELPLINK" Value="https://stv233.pro/en/me/"/>
     <ROW Property="Manufacturer" Value="Stv233.Pro"/>
-    <ROW Property="ProductCode" Value="1033:{172418DC-F088-48D0-8FE9-A91C451A4944} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{D06BA2A9-75CA-4D68-84F4-70E2182DFD98} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Dialog builder 2"/>
-    <ROW Property="ProductVersion" Value="0.0.1" Type="32"/>
+    <ROW Property="ProductVersion" Value="0.0.2" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{DE340E7F-23AF-48EB-984E-9D4564F5BC67}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>

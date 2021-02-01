@@ -18,6 +18,8 @@ namespace Dialog_Builder_2
         {
             public int Width;
             public int Height;
+            public int Left;
+            public int Top;
             public Color Main;
             public Color Secondary;
             public Color Text;
@@ -337,15 +339,17 @@ namespace Dialog_Builder_2
 
         private void frMain_Load(object sender, EventArgs e)
         {
-            if (System.IO.File.Exists("usersett"))
+            if (System.IO.File.Exists(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "/Stv233/Dialog builder/usersett"))
             {
-                staticSetting setting = Newtonsoft.Json.JsonConvert.DeserializeObject<staticSetting>(System.IO.File.ReadAllText("usersett"));
+                staticSetting setting = Newtonsoft.Json.JsonConvert.DeserializeObject<staticSetting>(System.IO.File.ReadAllText(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "/Stv233/Dialog builder/usersett"));
 
                 MainColor = setting.Main;
                 SecondaryColor = setting.Secondary;
                 TextColor = setting.Text;
                 this.Width = setting.Width;
                 this.Height = setting.Height;
+                this.Top = setting.Top;
+                this.Left = setting.Left;
             }
             else
             {
@@ -358,7 +362,11 @@ namespace Dialog_Builder_2
                 setting.Text = TextColor;
                 setting.Width = this.Width;
                 setting.Height = this.Height;
-                System.IO.File.WriteAllText("usersett", Newtonsoft.Json.JsonConvert.SerializeObject(setting));
+                setting.Left = this.Left;
+                setting.Top = this.Top;
+
+                System.IO.Directory.CreateDirectory(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\Stv233\\Dialog builder");
+                System.IO.File.WriteAllText(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\Stv233\\Dialog builder\\usersett", Newtonsoft.Json.JsonConvert.SerializeObject(setting));
             }
 
             safeModeToolStripMenuItem.Checked = new Properties.Settings().SafeMode;
@@ -663,7 +671,9 @@ namespace Dialog_Builder_2
                     setting.Text = TextColor;
                     setting.Width = this.Width;
                     setting.Height = this.Height;
-                    System.IO.File.WriteAllText("usersett", Newtonsoft.Json.JsonConvert.SerializeObject(setting));
+                    setting.Left = this.Left;
+                    setting.Top = this.Top;
+                    System.IO.File.WriteAllText(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "/Stv233/Dialog builder/usersett", Newtonsoft.Json.JsonConvert.SerializeObject(setting));
                 }
             }
         }
@@ -681,7 +691,9 @@ namespace Dialog_Builder_2
                     setting.Text = TextColor;
                     setting.Width = this.Width;
                     setting.Height = this.Height;
-                    System.IO.File.WriteAllText("usersett", Newtonsoft.Json.JsonConvert.SerializeObject(setting));
+                    setting.Left = this.Left;
+                    setting.Top = this.Top;
+                    System.IO.File.WriteAllText(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "/Stv233/Dialog builder/usersett", Newtonsoft.Json.JsonConvert.SerializeObject(setting));
                 }
             }
         }
@@ -699,7 +711,9 @@ namespace Dialog_Builder_2
                     setting.Text = TextColor;
                     setting.Width = this.Width;
                     setting.Height = this.Height;
-                    System.IO.File.WriteAllText("usersett", Newtonsoft.Json.JsonConvert.SerializeObject(setting));
+                    setting.Left = this.Left;
+                    setting.Top = this.Top;
+                    System.IO.File.WriteAllText(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "/Stv233/Dialog builder/usersett", Newtonsoft.Json.JsonConvert.SerializeObject(setting));
                 }
             }
         }
@@ -712,7 +726,23 @@ namespace Dialog_Builder_2
             setting.Text = TextColor;
             setting.Width = this.Width;
             setting.Height = this.Height;
-            System.IO.File.WriteAllText("usersett", Newtonsoft.Json.JsonConvert.SerializeObject(setting));
+            setting.Left = this.Left;
+            setting.Top = this.Top;
+            System.IO.File.WriteAllText(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "/Stv233/Dialog builder/usersett", Newtonsoft.Json.JsonConvert.SerializeObject(setting));
+        }
+
+        private void frMain_Move(object sender, EventArgs e)
+        {
+            staticSetting setting = new staticSetting();
+            setting.Main = MainColor;
+            setting.Secondary = SecondaryColor;
+            setting.Text = TextColor;
+            setting.Width = this.Width;
+            setting.Height = this.Height;
+            setting.Left = this.Left;
+            setting.Top = this.Top;
+            System.IO.File.WriteAllText(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "/Stv233/Dialog builder/usersett", Newtonsoft.Json.JsonConvert.SerializeObject(setting));
+
         }
     }
 }

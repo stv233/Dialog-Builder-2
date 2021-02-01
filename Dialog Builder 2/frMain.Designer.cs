@@ -218,6 +218,7 @@ namespace Dialog_Builder_2
             this.Text = "Dialog Builder 2";
             this.Load += new System.EventHandler(this.frMain_Load);
             this.SizeChanged += new System.EventHandler(this.frMain_SizeChanged);
+            this.Move += new System.EventHandler(this.frMain_Move);
             this.msMain.ResumeLayout(false);
             this.msMain.PerformLayout();
             this.ResumeLayout(false);
