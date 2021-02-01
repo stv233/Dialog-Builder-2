@@ -12,12 +12,12 @@ namespace Dialog_Builder_2
         /// Главная точка входа для приложения.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             new frСheckingForUpdates().ShowDialog();
-            Application.Run(new frMain());
+            Application.Run(new frMain(args));
         }
     }
 }

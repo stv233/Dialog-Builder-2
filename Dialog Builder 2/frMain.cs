@@ -127,6 +127,8 @@ namespace Dialog_Builder_2
             }
         }
 
+        public bool Loaded { get; private set; }
+
         private Label lbText = new Label();
         private Label lbResponses = new Label();
 
@@ -139,8 +141,10 @@ namespace Dialog_Builder_2
         private Button btAddResponse = new Button();
         private Button btActions = new Button();
 
-        public frMain()
+        public frMain(string [] args)
         {
+
+
             InitializeComponent();
 
             tbName = new TextBox
@@ -335,11 +339,24 @@ namespace Dialog_Builder_2
             Dialog.Pages.Add(new Page("1"));
             cbPages.Items.Add("1");
             cbPages.SelectedIndex = 0;
+
+            if (args.Length > 0)
+            {
+                Open(args[0]);
+            }
+            else if (args.Length > 1)
+            {
+                Open(args[0]);
+                for(var i = 1; i < args.Length; i++)
+                {
+                    System.Diagnostics.Process.Start(Application.ExecutablePath, args[i]);
+                }
+            }
         }
 
         private void frMain_Load(object sender, EventArgs e)
         {
-            if (System.IO.File.Exists(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "/Stv233/Dialog builder/usersett"))
+            if (System.IO.File.Exists(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\Stv233\\Dialog builder\\usersett"))
             {
                 staticSetting setting = Newtonsoft.Json.JsonConvert.DeserializeObject<staticSetting>(System.IO.File.ReadAllText(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "/Stv233/Dialog builder/usersett"));
 
@@ -370,9 +387,9 @@ namespace Dialog_Builder_2
             }
 
             safeModeToolStripMenuItem.Checked = new Properties.Settings().SafeMode;
-
             safeModeToolStripMenuItem.CheckedChanged += safeModeToolStripMenuItem_CheckedChanged;
-
+            Loaded = true;
+            this.Text = this.Text + "   version " + new Properties.Settings().Version;
         }
 
         private void safeModeToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
@@ -541,18 +558,23 @@ namespace Dialog_Builder_2
             {
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    Dialog = Newtonsoft.Json.JsonConvert.DeserializeObject<Dialog>(System.IO.File.ReadAllText(ofd.FileName));
-                    cbPages.Items.Clear();
-
-                    foreach(Page page in Dialog.Pages)
-                    {
-                        cbPages.Items.Add(page.Name);
-                    }
-
-                    cbPages.SelectedIndex = 0;
-                    path = ofd.FileName;
+                    Open(ofd.FileName);
                 }
             }
+        }
+
+        private void Open(string filePath)
+        {
+            Dialog = Newtonsoft.Json.JsonConvert.DeserializeObject<Dialog>(System.IO.File.ReadAllText(filePath));
+            cbPages.Items.Clear();
+
+            foreach (Page page in Dialog.Pages)
+            {
+                cbPages.Items.Add(page.Name);
+            }
+
+            cbPages.SelectedIndex = 0;
+            path = filePath;
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -733,16 +755,18 @@ namespace Dialog_Builder_2
 
         private void frMain_Move(object sender, EventArgs e)
         {
-            staticSetting setting = new staticSetting();
-            setting.Main = MainColor;
-            setting.Secondary = SecondaryColor;
-            setting.Text = TextColor;
-            setting.Width = this.Width;
-            setting.Height = this.Height;
-            setting.Left = this.Left;
-            setting.Top = this.Top;
-            System.IO.File.WriteAllText(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "/Stv233/Dialog builder/usersett", Newtonsoft.Json.JsonConvert.SerializeObject(setting));
-
+            if (Loaded)
+            {
+                staticSetting setting = new staticSetting();
+                setting.Main = MainColor;
+                setting.Secondary = SecondaryColor;
+                setting.Text = TextColor;
+                setting.Width = this.Width;
+                setting.Height = this.Height;
+                setting.Left = this.Left;
+                setting.Top = this.Top;
+                System.IO.File.WriteAllText(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "/Stv233/Dialog builder/usersett", Newtonsoft.Json.JsonConvert.SerializeObject(setting));
+            }
         }
     }
 }
