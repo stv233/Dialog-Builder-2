@@ -1,1 +1,1 @@
-﻿0.0.5|https://github.com/stv233/Dialog-Builder-2/blob/master/DialogBuilderInstaller/DialogBuilderInstaller-SetupFiles/DialogBuilderInstaller.msi?raw=true
+﻿0.1.0|https://github.com/stv233/Dialog-Builder-2/blob/master/DialogBuilderInstaller/DialogBuilderInstaller-SetupFiles/DialogBuilderInstaller.msi?raw=true
