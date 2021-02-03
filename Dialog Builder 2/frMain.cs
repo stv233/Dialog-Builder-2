@@ -608,7 +608,7 @@ namespace Dialog_Builder_2
                 if (fbd.ShowDialog() == DialogResult.OK)
                 {
                     System.IO.File.WriteAllText(fbd.SelectedPath + "\\variables", Dialog.LocalVariable);
-                    System.IO.File.WriteAllText(fbd.SelectedPath + "\\gvariables", Dialog.LocalVariable);
+                    System.IO.File.WriteAllText(fbd.SelectedPath + "\\gvariables", Dialog.GlobalVariable);
 
                     foreach (Page page in Dialog.Pages)
                     {
