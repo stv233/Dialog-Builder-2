@@ -549,6 +549,12 @@ namespace Dialog_Builder_2
                 cbPages.Items.Clear();
                 cbPages.Items.Add("1");
                 cbPages.SelectedIndex = 0;
+
+                path = "";
+                if (this.Text.Contains("-"))
+                {
+                    this.Text = this.Text.Substring(0, this.Text.IndexOf("-") - 1);
+                }
             }
         }
 
@@ -575,6 +581,12 @@ namespace Dialog_Builder_2
 
             cbPages.SelectedIndex = 0;
             path = filePath;
+
+            if (this.Text.Contains ("-"))
+            {
+                this.Text = this.Text.Substring(0,this.Text.IndexOf("-") - 1);
+            }
+            this.Text += " - " + System.IO.Path.GetFileNameWithoutExtension(path);
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -597,6 +609,12 @@ namespace Dialog_Builder_2
                 {
                     System.IO.File.WriteAllText(sfd.FileName, Newtonsoft.Json.JsonConvert.SerializeObject(Dialog));
                     path = sfd.FileName;
+
+                    if (this.Text.Contains("-"))
+                    {
+                        this.Text = this.Text.Substring(0, this.Text.IndexOf("-") - 1);
+                    }
+                    this.Text += " - " + System.IO.Path.GetFileNameWithoutExtension(path);
                 }
             }
         }

@@ -19,16 +19,8 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'DefaultBuild' " />
   <ItemGroup>
     <Compile Include="DialogBuilderInstaller.aip">
-      <SubType>Code</SubType>
+      <SubType>Content</SubType>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Dialog Builder 2\Dialog Builder 2.csproj">
-      <Name>Dialog Builder 2</Name>
-      <Project>{2dc63d61-7ac9-44be-80a4-6b1e8e9d767f}</Project>
-      <Private>True</Private>
-      <OutputsToImport>PrimaryOutput;References;ContentOutput;DocumentationOutput;LocalizedResourcesOutput;ComTypeLibraryOutput</OutputsToImport>
-    </ProjectReference>
   </ItemGroup>
   <Target Name="Build">
     <Error Text="This project requires Advanced Installer tool. Please download it from https://www.advancedinstaller.com/download.html" />

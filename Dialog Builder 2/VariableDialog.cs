@@ -26,7 +26,7 @@ namespace Dialog_Builder_2
         {
             this.Size = new System.Drawing.Size(420, 300);
             this.StartPosition = FormStartPosition.CenterParent;
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
             this.BackColor = frMain.ActiveForm.BackColor;
             this.Icon = Properties.Resources.ico1;
 
