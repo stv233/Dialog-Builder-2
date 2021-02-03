@@ -37,7 +37,7 @@ namespace Dialog_Builder_2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.0.4")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.0.5")]
         public string Version {
             get {
                 return ((string)(this["Version"]));

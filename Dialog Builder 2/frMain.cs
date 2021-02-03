@@ -529,7 +529,7 @@ namespace Dialog_Builder_2
                         rtbPageText.SelectionLength = 0;
                         rtbPageText.SelectedText = "[gvariable:" + variable.Split(':')[1].Split('=')[0] + "]";
                     };
-                    localVariable.DropDownItems.Add(gVariable);
+                    globalVariable.DropDownItems.Add(gVariable);
                 }
                 catch (IndexOutOfRangeException) { }
             }
