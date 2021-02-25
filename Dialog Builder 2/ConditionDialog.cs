@@ -45,7 +45,20 @@ namespace Dialog_Builder_2
             cbCondition.Items.Add("Local variable");
             cbCondition.Items.Add("Global variable");
             cbCondition.Items.Add("Inventory item [Advanced inventory system]");
+            cbCondition.Items.Add("Task status [Task list]");
             cbCondition.SelectedIndex = 0;
+            cbCondition.SelectedIndexChanged += (s, e) =>
+            {
+                if (cbCondition.SelectedIndex == cbCondition.Items.IndexOf("Task status [Task list]"))
+                {
+                    cbSign.SelectedIndex = cbSign.Items.IndexOf("=");
+                    cbSign.Enabled = false;
+                }
+                else
+                {
+                    cbSign.Enabled = true;
+                }
+            };
 
             tbName = new TextBox
             {
@@ -109,17 +122,22 @@ namespace Dialog_Builder_2
             {
                 string condition = "";
 
-                if (cbCondition.SelectedIndex == 0)
+                if (cbCondition.SelectedIndex == cbCondition.Items.IndexOf("Local variable"))
                 {
                     condition += "variable";
                 }
-                else if (cbCondition.SelectedIndex == 1)
+                else if (cbCondition.SelectedIndex == cbCondition.Items.IndexOf("Global variable"))
                 {
                     condition += "gvariable";
                 }
-                else if (cbCondition.SelectedIndex == 2)
+                else if (cbCondition.SelectedIndex == cbCondition.Items.IndexOf("Inventory item [Advanced inventory system]"))
                 {
                     condition += "inventoryitem";
+                }
+                else if (cbCondition.SelectedIndex == cbCondition.Items.IndexOf("Task status [Task list]"))
+                {
+                    condition += ("taskstatus");
+                    cbSign.Text = "=";
                 }
 
                 condition += ":";

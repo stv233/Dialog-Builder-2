@@ -46,11 +46,25 @@ namespace Dialog_Builder_2
             cbAction.Items.Add("Global variable");
             cbAction.Items.Add("Inventory item [Advanced inventory system]");
             cbAction.Items.Add("Skillpoints [Skill tree]");
+            cbAction.Items.Add("Set task status [Task list]");
+            cbAction.Items.Add("Set task status with notification [Task list]");
             cbAction.SelectedIndex = 0;
             cbAction.SelectedIndexChanged += (s, e) =>
             {
                 tbName.Visible = !(cbAction.SelectedIndex == cbAction.Items.IndexOf("Skillpoints [Skill tree]"));
                 lbName.Visible = !(cbAction.SelectedIndex == cbAction.Items.IndexOf("Skillpoints [Skill tree]"));
+
+                if ((cbAction.SelectedIndex == cbAction.Items.IndexOf("Set task status [Task list]"))
+                    || (cbAction.SelectedIndex == cbAction.Items.IndexOf("Set task status with notification [Task list]")))
+                {
+                    cbSign.SelectedIndex = cbSign.Items.IndexOf("=");
+                    cbSign.Enabled = false;
+                }
+                else
+                {
+                    cbSign.Enabled = true;
+                }
+
             };
 
             tbName = new TextBox
@@ -72,9 +86,9 @@ namespace Dialog_Builder_2
                 DropDownStyle = ComboBoxStyle.DropDownList,
                 Parent = this
             };
+            cbSign.Items.Add("=");
             cbSign.Items.Add("+");
             cbSign.Items.Add("-");
-            cbSign.Items.Add("=");
             cbSign.SelectedIndex = 0;
 
             tbValue = new TextBox
@@ -112,22 +126,32 @@ namespace Dialog_Builder_2
             {
                 string action = "";
 
-                if (cbAction.SelectedIndex == 0)
+                if (cbAction.SelectedIndex == cbAction.Items.IndexOf("Local variable"))
                 {
                     action += "variable";
                 }
-                else if (cbAction.SelectedIndex == 1)
+                else if (cbAction.SelectedIndex == cbAction.Items.IndexOf("Global variable"))
                 {
                     action += "gvariable";
                 }
-                else if (cbAction.SelectedIndex == 2)
+                else if (cbAction.SelectedIndex == cbAction.Items.IndexOf("Inventory item [Advanced inventory system]"))
                 {
                     action += "inventoryitem";
                 }
-                else if (cbAction.SelectedIndex == 3)
+                else if (cbAction.SelectedIndex == cbAction.Items.IndexOf("Skillpoints [Skill tree]"))
                 {
                     action += "skillpoint";
                     tbName.Text = "";
+                }
+                else if (cbAction.SelectedIndex == cbAction.Items.IndexOf("Set task status [Task list]"))
+                {
+                    action += "settaskstatus";
+                    cbSign.Text = "=";
+                }
+                else if (cbAction.SelectedIndex == cbAction.Items.IndexOf("Set task status with notification [Task list]"))
+                {
+                    action += "settaskstatusnotification";
+                    cbSign.Text = "=";
                 }
 
                 action += ":";
@@ -198,23 +222,39 @@ namespace Dialog_Builder_2
                 string type = action.Split(':')[0];
                 string name = action.Split(':')[1].Split('+', '-', '=')[0];
                 string value = action.Split(':')[1].Split('+', '-', '=')[1];
-                string sign = action.Replace(type + ":" + name, "").Replace(value, "");
+                string sign;
+                if (value == "")
+                {
+                    sign = action.Replace(type + ":" + name, "");
+                }
+                else
+                {
+                    sign = action.Replace(type + ":" + name, "").Replace(value, "");
+                }
 
                 if (type == "variable")
                 {
-                    cbAction.SelectedIndex = 0;
+                    cbAction.SelectedIndex = cbAction.Items.IndexOf("Local variable");
                 }
                 else if (type == "gvariable")
                 {
-                    cbAction.SelectedIndex = 1;
+                    cbAction.SelectedIndex = cbAction.Items.IndexOf("Global variable");
                 }
                 else if (type == "inventoryitem")
                 {
-                    cbAction.SelectedIndex = 2;
+                    cbAction.SelectedIndex = cbAction.Items.IndexOf("Inventory item [Advanced inventory system]");
                 }
                 else if (type == "skillpoint")
                 {
-                    cbAction.SelectedIndex = 3;
+                    cbAction.SelectedIndex = cbAction.Items.IndexOf("Skillpoints [Skill tree]");
+                }
+                else if (type == "settaskstatus")
+                {
+                    cbAction.SelectedIndex = cbAction.Items.IndexOf("Set task status [Task list]");
+                }
+                else if (type == "settaskstatusnotification")
+                {
+                    cbAction.SelectedIndex = cbAction.Items.IndexOf("Set task status with notification [Task list]");
                 }
 
                 tbName.Text = name;

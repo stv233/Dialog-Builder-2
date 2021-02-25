@@ -158,6 +158,14 @@ namespace Dialog_Builder_2
                     {
                         type = "Skillpoints [Skill tree]";
                     }
+                    else if (type == "settaskstatus")
+                    {
+                        type = "Set task status [Task list]";
+                    }
+                    else if (type == "settaskstatusnotification")
+                    {
+                        type = "Set task status with notification [Task list]";
+                    }
 
                     var pnVariable = new Panel
                     {

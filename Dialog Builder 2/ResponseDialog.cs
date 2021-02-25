@@ -177,7 +177,10 @@ namespace Dialog_Builder_2
         {
             foreach (Page page in pages)
             {
-                cbLink.Items.Add(page.Name);
+                if (!cbLink.Items.Contains(page.Name))
+                {
+                    cbLink.Items.Add(page.Name);
+                }   
             }
         }
 
@@ -210,7 +213,10 @@ namespace Dialog_Builder_2
         {
             foreach (Page page in pages)
             {
-                cbLink.Items.Add(page.Name);
+                if (!cbLink.Items.Contains(page.Name))
+                {
+                    cbLink.Items.Add(page.Name);
+                }
             }
         }
     }
