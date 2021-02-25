@@ -390,6 +390,7 @@ namespace Dialog_Builder_2
             safeModeToolStripMenuItem.CheckedChanged += safeModeToolStripMenuItem_CheckedChanged;
             Loaded = true;
             this.Text = this.Text + "   version " + new Properties.Settings().Version;
+            this.Activate();
         }
 
         private void safeModeToolStripMenuItem_CheckedChanged(object sender, EventArgs e)

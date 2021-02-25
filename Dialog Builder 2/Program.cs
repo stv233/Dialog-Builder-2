@@ -16,8 +16,32 @@ namespace Dialog_Builder_2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            new frСheckingForUpdates().ShowDialog();
+
+            if (Array.IndexOf(args, "-noupdt") != -1)
+            {
+                RemoveFromArgs(ref args, "-noupdt");
+            }
+            else
+            {
+                new frСheckingForUpdates().ShowDialog();
+            }
+
+            if (Array.IndexOf(args, "-reset") != -1)
+            {
+                RemoveFromArgs(ref args, "-reset");
+                System.IO.File.Delete(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\Stv233\\Dialog builder\\usersett");
+            }
+
             Application.Run(new frMain(args));
+        }
+
+        static void RemoveFromArgs(ref string[] args, string target)
+        {
+            for (var i = Array.IndexOf(args,target); i < args.Length - 1; i++)
+            {
+                args[i] = args[i + 1];
+            }
+            Array.Resize<string>(ref args, args.Length - 1);
         }
     }
 }
